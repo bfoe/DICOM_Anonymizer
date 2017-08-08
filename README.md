@@ -2,7 +2,7 @@
 Quick and dirty hack to anonymize DICOM files
 
 This program will modify all DICOM files under the current folder.
-The following tags will be anonimized::
+The following tags will be anonimized:
 - PatientName
 - PatientBirthDate
 - PatientSex
