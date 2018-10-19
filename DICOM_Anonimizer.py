@@ -71,8 +71,8 @@ def reenable_close_window():
     if pywin32_installed:
         try: # reenable console windows close button (useful if called command line or batch file)
             hwnd = win32console.GetConsoleWindow()
-            hMenu = win32gui.GetSystemMenu(hwnd, 1)
-            win32gui.DeleteMenu(hMenu, win32con.SC_CLOSE, win32con.MF_BYCOMMAND)
+            hMenu = win32gui.GetSystemMenu(hwnd, False)
+            win32gui.EnableMenuItem(hMenu, win32con.SC_CLOSE, win32con.MF_ENABLED)          
         except: pass #silent
  
 def exit (code):
@@ -103,8 +103,8 @@ if sys.platform=="win32":
     if pywin32_installed:
         try: # disable console windows close button (substitutes catch shell exit under linux)
             hwnd = win32console.GetConsoleWindow()
-            hMenu = win32gui.GetSystemMenu(hwnd, 0)
-            win32gui.DeleteMenu(hMenu, win32con.SC_CLOSE, win32con.MF_BYCOMMAND)
+            hMenu = win32gui.GetSystemMenu(hwnd, False)
+            win32gui.EnableMenuItem(hMenu, win32con.SC_CLOSE, win32con.MF_GRAYED)                      
         except: pass #silent
 signal.signal(signal.SIGINT, signal_handler)  # keyboard interrupt
 signal.signal(signal.SIGTERM, signal_handler) # kill/shutdown
